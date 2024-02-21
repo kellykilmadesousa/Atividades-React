@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Pacifico&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+  --font1: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  --font2: "Roboto Mono", monospace;
+  --font3: "Pacifico", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: rgb(243, 205, 255);
+}
+
+h1 {
+  font: italic normal 3.5em var(--font3);
+  color: red;
+}
+
+h2 {
+  font: normal normal 1em var(--font2);
+  color: rgb(0, 0, 0);
+}
+
+div.App {
+  margin-top: 50px;
+}
+
+.lista-de-tarefas {
+  max-width: 450px;
+  margin: 0 auto;
+  line-height: 60px;
+}
+
+.tarefa-input {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  
+}
+
+.tarefa-input input {
+  background-color: rgb(248, 239, 228);
+  padding: 10px 5px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  border: 0px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.283);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin-bottom: 5px;
+  border: 2px solid rgba(126, 125, 125, 0.669);
+  border-radius: 5px;
+}
+
+li button {
+  margin-left: 2px;
+  align-items: baseline;
+}
+
+button {
+  background-color: #187bf5;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.283);
+  text-shadow: 2px 2px 2px rgba(51, 54, 53, 0.669);
+  font-weight: bolder;
+  color: white;
+  border: 1px solid #187bf5;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button.btn-remover {
+  background-color: rgb(238, 68, 68);
+  border: 1px solid rgb(238, 68, 68);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.283);
+  text-shadow: 2px 2px 2px rgba(51, 54, 53, 0.669);
+  font-weight: bolder;
+}
