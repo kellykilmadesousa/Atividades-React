@@ -1,38 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './ListaDeTarefas.css';
+// import axios from 'axios';
+import Api from '../services/Api';
 
 const ListaDeTarefas = () => {
   const [tarefas, setTarefas] = useState([]);
   const [novaTarefa, setNovaTarefa] = useState('');
   const [indiceAtualizacao, setIndiceAtualizacao] = useState(null);
 
+  Api.get('https://jsonplaceholder.typicode.com/users')
+  .then(function (response) {
+    // acessar resposta:
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    // aqui temos acesso ao erro, quando alguma coisa inesperada acontece:
+    console.log(error);
+  })
+
   const adicionarTarefa = () => {
     if (novaTarefa.trim() !== '') {
       if (indiceAtualizacao !== null) {
-        // quando o indice de atualização não for nulo vai atualizar a tarefa existente
         const novasTarefas = [...tarefas];
-        novasTarefas[indiceAtualizacao] = novaTarefa;
+        novasTarefas[indiceAtualizacao].title = novaTarefa; // Atualiza o título da tarefa existente
         setTarefas(novasTarefas);
         setNovaTarefa('');
         setIndiceAtualizacao(null);
       } else {
-        // para incluir uma nova tarefa na lista
-        setTarefas([...tarefas, novaTarefa]);
+        const novaTarefaObj = { id: Date.now(), title: novaTarefa, completed: false };
+        setTarefas([...tarefas, novaTarefaObj]); // Adiciona uma nova tarefa à lista
         setNovaTarefa('');
       }
     }
   };
 
   const removerTarefa = (index) => {
-    // Remover a tarefa com o índice informado
     const novasTarefas = [...tarefas];
     novasTarefas.splice(index, 1);
     setTarefas(novasTarefas);
   };
 
   const atualizarTarefa = (index) => {
-    // para atualizar o estado para indicar que esta tarefa será atualizada
-    setNovaTarefa(tarefas[index]);
+    setNovaTarefa(tarefas[index].title);
     setIndiceAtualizacao(index);
   };
 
@@ -52,8 +61,8 @@ const ListaDeTarefas = () => {
 
       <ul>
         {tarefas.map((tarefa, index) => (
-          <li key={index}>
-            {tarefa}
+          <li key={tarefa.id}>
+            {tarefa.title} {/* Renderiza o título da tarefa */}
             <button onClick={() => removerTarefa(index)} className='btn-remover'>Remover</button>
             <button onClick={() => atualizarTarefa(index)}>Atualizar</button>
           </li>
